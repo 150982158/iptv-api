@@ -257,6 +257,8 @@ jobs:
               "$pages_link"
           fi
 
+          find release-assets -type f -empty -delete
+          
           mapfile -d '' local_assets < <(find release-assets -maxdepth 1 -type f -print0 | sort -z)
           gh release create "$RELEASE_TAG" "${local_assets[@]}" \
             --repo "$GITHUB_REPOSITORY" \
